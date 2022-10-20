@@ -1,0 +1,48 @@
+!SESSION 2022-10-18 12:14:52.821 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_ZA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-10-18 12:15:26.474
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-10-18 12:15:26.540
+!MESSAGE Log4j initialized with config file E:\UCT\3rd Year\EEE3096S\Light of Things Project\Light of Things Workspace\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-10-18 12:15:29.489
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2022-10-18 12:15:59.282 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_ZA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-10-18 12:16:14.032
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-10-18 12:16:14.102
+!MESSAGE Log4j initialized with config file E:\UCT\3rd Year\EEE3096S\Light of Things Project\Light of Things Workspace\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-10-18 12:16:17.198
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-10-18 12:16:39.758
+!MESSAGE Indexed 'EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version' (25 sources, 104 headers) in 2,83 sec: 8 895 declarations; 54 088 references; 2 unresolved inclusions; 33 syntax errors; 188 unresolved names (0,3%)
+!SESSION 2022-10-20 14:28:51.937 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_ZA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-10-20 14:31:45.999
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-10-20 14:31:46.451
+!MESSAGE Log4j initialized with config file E:\UCT\3rd Year\EEE3096S\Light of Things Project\Light of Things Workspace\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-10-20 14:32:08.912
+!MESSAGE Started RMI Server, listening on port 41337
