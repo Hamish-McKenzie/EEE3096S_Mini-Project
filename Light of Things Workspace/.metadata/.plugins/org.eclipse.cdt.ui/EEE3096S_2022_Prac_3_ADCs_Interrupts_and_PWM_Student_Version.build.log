@@ -1,10 +1,259 @@
-16:00:42 **** Incremental Build of configuration Debug for project EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version ****
+13:49:43 **** Incremental Build of configuration Debug for project EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version ****
 make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F051x8 -c -I../Core/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:170:9: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  170 |         sprintf(buffer, "countBit:%d\r\n\r\n", 1);
+      |         ^~~~~~~
+../Core/Src/main.c:170:9: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:24:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   23 | #include "main.h"
+  +++ |+#include <stdio.h>
+   24 | 
+../Core/Src/main.c:171:36: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  171 |         HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                    ^~~~~~
+      |                                    |
+      |                                    char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:172:26: warning: implicit declaration of function 'pow' [-Wimplicit-function-declaration]
+  172 |         countRecieved += pow(2, i);
+      |                          ^~~
+../Core/Src/main.c:172:26: warning: incompatible implicit declaration of built-in function 'pow'
+../Core/Src/main.c:24:1: note: include '<math.h>' or provide a declaration of 'pow'
+   23 | #include "main.h"
+  +++ |+#include <math.h>
+   24 | 
+../Core/Src/main.c:176:9: warning: incompatible implicit declaration of built-in function 'sprintf'
+  176 |         sprintf(buffer, "countBit:%d\r\n\r\n", 0);
+      |         ^~~~~~~
+../Core/Src/main.c:176:9: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:177:36: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  177 |         HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                    ^~~~~~
+      |                                    |
+      |                                    char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:184:5: warning: incompatible implicit declaration of built-in function 'sprintf'
+  184 |     sprintf(buffer, "countRec:%d\r\n\r\n", countRecieved);
+      |     ^~~~~~~
+../Core/Src/main.c:184:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:184:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  184 |     sprintf(buffer, "countRec:%d\r\n\r\n", countRecieved);
+      |                               ~^           ~~~~~~~~~~~~~
+      |                                |           |
+      |                                int         uint32_t {aka long unsigned int}
+      |                               %ld
+../Core/Src/main.c:185:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  185 |     HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                ^~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:191:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  191 |           HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                      ^~~~~~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:192:24: warning: incompatible implicit declaration of built-in function 'pow'
+  192 |           adcValRec += pow(2, i); //convert from binary back to decimal
+      |                        ^~~
+../Core/Src/main.c:192:24: note: include '<math.h>' or provide a declaration of 'pow'
+../Core/Src/main.c:197:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  197 |           HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                      ^~~~~~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:203:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  203 |      sprintf(buffer, "adcVal:%d\r\n\r\n", adcValRec); // transmit the adc value recieved over UART
+      |                              ~^           ~~~~~~~~~
+      |                               |           |
+      |                               int         uint32_t {aka long unsigned int}
+      |                              %ld
+../Core/Src/main.c:204:33: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  204 |      HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:207:6: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  207 |      gcvt(voltage, 3, buf); //convert float to string to transmit over UART
+      |      ^~~~
+../Core/Src/main.c:210:33: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  210 |      HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:215:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  215 |           HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                      ^~~~~~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:220:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  220 |           HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                      ^~~~~~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:227:38: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  227 |      sprintf(buffer, "ParityCounter:%d\r\n\r\n", oneCounter);
+      |                                     ~^           ~~~~~~~~~~
+      |                                      |           |
+      |                                      int         uint32_t {aka long unsigned int}
+      |                                     %ld
+../Core/Src/main.c:228:33: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  228 |      HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:238:36: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  238 |      sprintf(buffer, "storedCount:%d\r\n\r\n", countStored); //transmit current stored count value
+      |                                   ~^           ~~~~~~~~~~~
+      |                                    |           |
+      |                                    int         uint32_t {aka long unsigned int}
+      |                                   %ld
+../Core/Src/main.c:239:33: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  239 |      HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:240:38: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  240 |      sprintf(buffer, "recievedCount:%d\r\n\r\n", countRecieved);//transmit the count value recieved in the message
+      |                                     ~^           ~~~~~~~~~~~~~
+      |                                      |           |
+      |                                      int         uint32_t {aka long unsigned int}
+      |                                     %ld
+../Core/Src/main.c:241:33: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  241 |      HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+      |                                 ^~~~~~
+      |                                 |
+      |                                 char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'EXTI0_1_IRQHandler':
+../Core/Src/main.c:530:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+  530 |   sprintf(buffer, "ADCVal:%d\r\n\r\n", ADCVal);
+      |   ^~~~~~~
+../Core/Src/main.c:530:3: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:531:30: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  531 |   HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000); //Transmits the ADC Value over UART
+      |                              ^~~~~~
+      |                              |
+      |                              char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:545:34: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  545 |       HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000); //Transmits the ADC Value over UART
+      |                                  ^~~~~~
+      |                                  |
+      |                                  char *
+In file included from ../Core/Inc/stm32f0xx_hal_conf.h:289,
+                 from ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:30,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:23:
+../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:1528:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1528 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:209:31: warning: '%s' directive writing up to 99 bytes into a region of size 17 [-Wformat-overflow=]
+  209 |      sprintf(buffer, "Voltage:%sV\r\n\r\n", buf); // transmit the adc value recieved over UART
+      |                               ^~            ~~~
+../Core/Src/main.c:209:6: note: 'sprintf' output between 14 and 113 bytes into a destination of size 25
+  209 |      sprintf(buffer, "Voltage:%sV\r\n\r\n", buf); // transmit the adc value recieved over UART
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.elf" @"objects.list"   -mcpu=cortex-m0 -T"E:\UCT\3rd Year\EEE3096S\Light of Things Project\Light of Things Workspace\EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version\STM32F051R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.elf
+ 
 arm-none-eabi-size   EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.elf 
+arm-none-eabi-objdump -h -S  EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.elf  > "EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.list"
    text	   data	    bss	    dec	    hex	filename
-  20356	    120	   2040	  22516	   57f4	EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.elf
+  43620	    124	   2156	  45900	   b34c	EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.elf
 Finished building: default.size.stdout
  
+Finished building: EEE3096S_2022_Prac_3_ADCs_Interrupts_and_PWM_Student_Version.list
+ 
 
-16:00:42 Build Finished. 0 errors, 0 warnings. (took 298ms)
+13:49:44 Build Finished. 0 errors, 29 warnings. (took 892ms)
 

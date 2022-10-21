@@ -63,6 +63,13 @@ int currentMillis = 0;
 uint32_t numMessages = 0;
 uint32_t number;
 uint8_t binaryVal;
+uint32_t adcValRec;
+uint32_t countRecieved = 0;
+uint32_t countStored = 1;
+uint32_t oneCounter;
+
+float voltage;
+char buf[100];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,7 +134,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-
+/*
   number = 153;
 
   	  for(int i =0; i<12; i++){
@@ -143,29 +150,104 @@ int main(void)
   		HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000); //Transmits the ADC Value over UART
   		number>>= 1;
   		HAL_Delay(1000);
-  	  }
+  	  }	*/
 
 
 
   while (1)
   {
-	  currentMillis = HAL_GetTick();
-	  currentMillis = previousMillis;
-	  if(HAL_GPIO_ReadPin(GPIOC, 1)){
-		  currentMillis = HAL_GetTick();
-		  while(currentMillis - previousMillis <= 1500){
-			  currentMillis = HAL_GetTick(); //creates a 1.5s delay
-		  }
+	  adcValRec = 0;
+	  oneCounter = 0;
+	  countRecieved = 0;
+	  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)){
 
-		  for(int i=0; i<17; i++){
-			int reading = HAL_GPIO_ReadPin(GPIOC,1);
-			sprintf(buffer, "BitReading:%d\r\n\r\n", reading);
-			HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000); //Transmits the Reading Value over UART
-			previousMillis = currentMillis;
-			while(currentMillis - previousMillis < 1000){
-				currentMillis = HAL_GetTick();
-				} //creating 1 second delay
+
+		  HAL_Delay(150); // 0.15s delay
+
+		  for(int i=0; i<4; i++){ //Recieve all four count bits
+
+			  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)){
+		  			 sprintf(buffer, "countBit:%d\r\n\r\n", 1);
+		  			 HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+		  			 countRecieved += pow(2, i);
+		  			 oneCounter++; //increments parity counter by 1
+		  			  }
+			  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)==0){
+		  			 sprintf(buffer, "countBit:%d\r\n\r\n", 0);
+		  			 HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+		  			  }
+
+			  HAL_Delay(100); //0.1s delay
+
+		  	  }
+
+		  sprintf(buffer, "countRec:%d\r\n\r\n", countRecieved);
+		  HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+
+		  for(int i=0; i<12; i++){ //recieve all 12 adc value bits
+
+			  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)){
+			  			  sprintf(buffer, "adcBit:%d\r\n\r\n", 1);
+			  			  HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+			  			  adcValRec += pow(2, i); //convert from binary back to decimal
+			  			  oneCounter++; //increments parity counter by 1
+			  		      }
+			  if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)==0){
+			  			  sprintf(buffer, "adcBit:%d\r\n\r\n", 0);
+			  			  HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+			  			  }
+
+			  HAL_Delay(100); //0.1s delay
+
 			}
+		  	sprintf(buffer, "adcVal:%d\r\n\r\n", adcValRec); // transmit the adc value recieved over UART
+		  	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+
+		  	voltage = adcValRec*3/4095.0f;//convert adc value to a voltage
+		  	gcvt(voltage, 3, buf); //convert float to string to transmit over UART
+
+		  	sprintf(buffer, "Voltage:%sV\r\n\r\n", buf); // transmit the adc value recieved over UART
+		  	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+		  	for(int i=0; i<1; i++){ //recieve parity bit
+
+		  		if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)){
+		  				  sprintf(buffer, "Parity:%d\r\n\r\n", 1);
+		  				  HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+		  				  oneCounter++; //increments parity counter by 1
+		  				  }
+		  		if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1)==0){
+		  				  sprintf(buffer, "Parity:%d\r\n\r\n", 0);
+		  				  HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+		  				  }
+
+
+		  		HAL_Delay(100); //0.1s delay
+
+		  		}
+		  	sprintf(buffer, "ParityCounter:%d\r\n\r\n", oneCounter);
+		  	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+
+		  	if(oneCounter%2 != 0){ //triggers error if the message recieved had a odd number of 1's
+		  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, 1);
+		  		HAL_Delay(1000);
+		  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, 0);
+
+		  	}
+
+
+		  	sprintf(buffer, "storedCount:%d\r\n\r\n", countStored); //transmit current stored count value
+		  	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+		  	sprintf(buffer, "recievedCount:%d\r\n\r\n", countRecieved);//transmit the count value recieved in the message
+		  	HAL_UART_Transmit(&huart2, buffer, sizeof(buffer), 1000);
+
+		  	if(countStored != countRecieved){ //if statement to check that countStored equals countRecieved
+		  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, 1);
+		  		HAL_Delay(2000);
+		  		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, 0);
+		  		countStored = countRecieved; //sets count stored to equal count recieved if they did not match
+
+		  	}
+		  	countStored++;//increment stored count value to match the number of messages recieved
 
 
 	  }
@@ -395,12 +477,18 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PC1 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
